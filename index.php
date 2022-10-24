@@ -10,3 +10,5 @@ $mainClass::get_content($_GET['path']);
 
 $mainClass::get_footer();
 
+//Какой-то коммент
+
