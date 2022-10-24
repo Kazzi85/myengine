@@ -40,18 +40,7 @@ $user = new core\User();
                                 <?php $mainClass::get_menu(); ?>
                             </div>
                             <div class="userinfo">
-                                <?php
-                                if(isset($_SESSION['current_user']) && $_SESSION['current_user'] != '') {
-                                    echo '
-                                            <form method="post" action="/Core/users.php">
-                                            <b>' . $_SESSION['current_user']['username'] . '</b> 
-                                            <img src="/assets/img/' . $_SESSION['current_user']['avatar'] . '" alt="" width="20" >
-                                            <button name="logout">Logout</button>
-                                         ';
-                                }else{
-                                    echo '<a class="nav-link" href="login.php">Login</a> <a class="nav-link" href="register.php">Register</a>';
-                                }
-                                ?>
+                                <?php $mainClass::get_user_widget(); ?>
                             </div>
                         </div>
                     </nav>

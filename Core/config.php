@@ -8,3 +8,7 @@ define('DB_NAME', 'myangine');
 define('DB_PASSWORD', '328608');
 define('DB_HOST', 'localhost');
 
+/**
+ * User config
+ */
+define('USER_AUTOLOGIN', true);

@@ -9,7 +9,7 @@
 
         $args = [
             'user_name' => $_POST['login'],
-            'user_password' => md5($_POST['password']),
+            'user_password' => $_POST['password'],
         ];
 
         $user::RegisterUser($args);
@@ -20,13 +20,13 @@
     if (isset($_POST['login_user'])) {
         $args = [
             'user_name' => $_POST['login'],
-            'user_password' => md5($_POST['password']),
+            'user_password' => $_POST['password'],
         ];
 
         $user::UserLogin($args);
 
     }
 
-    if (isset($_POST['Logout'])) {
+    if (isset($_POST['logout'])) {
         $user->Logout();
     }

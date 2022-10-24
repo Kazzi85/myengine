@@ -55,6 +55,15 @@ class MainClass
         }
     }
 
+    static function get_user_widget () {
+        if(file_exists('views/templates/user_widget.php'))
+        {
+            include_once 'views/templates/user_widget.php';
+        } else {
+            echo "<h2 style='color: red;'>Файл views/templates/user_widget.php отсутствует.</h2>";
+        }
+    }
+
     static function get_styles_libs () {
         $styles_libs_list =  array_diff(scandir('assets/libs/css'), array('..', '.'));
         if($styles_libs_list != '') {

@@ -8,14 +8,7 @@ include_once 'db.php';
 class User
 {
     public function __construct () {
-        //$this->SetUser();
-    }
 
-    private function SetUser () {
-        if(!isset($_SESSION['current_user']) && $_COOKIE['current_user'] != '') {
-            session_start();
-            $_SESSION['current_user'] = $this->getUserById($_COOKIE['current_user']);
-        }
     }
 
     static function RegisterUser ($args) {
@@ -23,9 +16,13 @@ class User
         global $dbh;
 
         $sth = $dbh->prepare("INSERT INTO `users` SET `username` = :username, `password` = :password");
-        $sth->execute(array('username' => $args['user_name'], 'password' => $args['user_password']));
+        $sth->execute(array('username' => $args['user_name'], 'password' => password_hash($args['user_password'], PASSWORD_DEFAULT)));
 
-        header('Location: /login.php');
+        if (USER_AUTOLOGIN) {
+            self::UserLogin($args);
+        } else {
+            header('Location: /login.php');
+        }
     }
 
     static function UserLogin($args) {
@@ -36,15 +33,19 @@ class User
         $sth->execute(array($args['user_name']));
         $user = $sth->fetch(PDO::FETCH_ASSOC);
 
-        if($user != '' && $user['password'] === $args['user_password']) {
+        if($user != '' && password_verify($args['user_password'], $user['password'])) {
             session_start();
             $_SESSION['current_user'] = $user;
-            setcookie("current_user", $user['id'], strtotime("+30 days"));
+            if(isset($_COOKIE['user_id'])){
+                setcookie('user_id', $user['id'], strtotime("+30 days"));
+            } else {
+                $_COOKIE['user_id'] = $_SESSION['current_user']['id'];
+            }
         } else {
             session_start();
             $_SESSION['login_error'] = "Неверное имя пользвоателя или пароль.";
             $_SESSION['current_user'] = '';
-            setcookie("current_user", '');
+            setcookie("user_id", '', time());
         }
 
         header('Location: /');
@@ -55,17 +56,19 @@ class User
         global $dbh;
         global $user;
 
-        $sth = $dbh->prepare("SELECT * FROM `users` WHERE `id` = ?");
-        $sth->execute(array($id));
+        $sth = $dbh->prepare("SELECT * FROM `users` WHERE `id` = :id");
+        $sth->execute(array('id' => $id));
         $user = $sth->fetch(PDO::FETCH_ASSOC);
 
         return $user;
+
     }
 
     public function Logout () {
-        $_SESSION['current_user'] = '';
-        setcookie("current_user", '');
-        header('Location: /login.php');
+        session_start();
+        unset($_SESSION['current_user']);
+        $_COOKIE['user_id'] = '';
+        header('Location: /');
     }
 
 }

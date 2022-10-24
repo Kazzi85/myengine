@@ -10,8 +10,11 @@
     <div class="row">
         <div class="posts_list_wrap">
             <div class="post_item">
-                <?php var_dump($_SESSION['current_user']) ?>
-                <?php echo($_COOKIE['current_user']) ?>
+
+                <?php
+                echo "Сессия: ";
+                print_r($_SESSION['current_user']);
+                ?>
             </div>
         </div>
     </div>
