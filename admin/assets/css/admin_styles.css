@@ -1,0 +1,39 @@
+.admin_header {
+  background-color: #4f5050;
+  color: #babbbc;
+  height: 55px;
+}
+
+.admin_main_wrap {
+  display: block;
+  position: absolute;
+  height: calc(100vh - 55px);
+}
+.admin_main_wrap .admin_sidebar_wrap {
+  display: block;
+  position: relative;
+  height: calc(100vh - 55px);
+  background-color: #1e2125;
+  color: whitesmoke;
+}
+.admin_main_wrap .admin_sidebar_wrap .admin_sidebar_header {
+  border-bottom: solid 1px darkgrey;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 5px;
+}
+.admin_main_wrap .admin_sidebar_wrap .admin_sidebar_header img {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+.admin_main_wrap .admin_sidebar_wrap .admin_sidebar_header p {
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*# sourceMappingURL=admin_styles.css.map */
