@@ -1,19 +1,13 @@
 <?php
-
 include_once 'core/MainClass.php';
-//include_once 'core/User.php';
+include_once 'Core/Post.php';
 
-$mainClass = new \core\MainClass();
-//$User = new \core\User();
 
-/*if(isset($_COOKIE['user_id'])){
-    $user = $User->getUserById($_COOKIE['user_id']);
-    var_dump($user);
-}*/
+use core\MainClass;
 
-$mainClass::get_header();
+MainClass::get_header();
 
-$mainClass::get_content($_GET['path']);
+MainClass::get_content($_GET['path']);
 
-$mainClass::get_footer();
+MainClass::get_footer();
 

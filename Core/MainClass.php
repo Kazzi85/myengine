@@ -38,7 +38,7 @@ class MainClass
     static function get_content ($file_name) {
         if( $file_name == '/' || $file_name == '') {
             include_once 'views/pages/home.php';
-        } else if ( $file_name != '' ) {
+        } else {
             include_once 'views/pages/' . $file_name;
         }
     }

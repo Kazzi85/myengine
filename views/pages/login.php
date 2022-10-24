@@ -1,4 +1,4 @@
-<div class="conitainer">
+<div class="container">
     <div class="row">
         <div class="col-lg-4 m-auto mt-5">
 
