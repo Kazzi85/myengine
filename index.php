@@ -1,10 +1,10 @@
 <?php
 
 include_once 'core/MainClass.php';
-include_once 'core/User.php';
+//include_once 'core/User.php';
 
 $mainClass = new \core\MainClass();
-$User = new \core\User();
+//$User = new \core\User();
 
 /*if(isset($_COOKIE['user_id'])){
     $user = $User->getUserById($_COOKIE['user_id']);
