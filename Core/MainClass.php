@@ -55,6 +55,9 @@ class MainClass
         }
     }
 
+    /**
+     * A function that displays the user's widget in a convenient location.
+     */
     static function get_user_widget () {
         if(file_exists('views/templates/user_widget.php'))
         {
@@ -62,6 +65,18 @@ class MainClass
         } else {
             echo "<h2 style='color: red;'>Файл views/templates/user_widget.php отсутствует.</h2>";
         }
+    }
+
+    /**
+     * Success alert function
+     */
+    static function get_success_alert ($str = 'Сообщение...') {
+        echo ('
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                '. $str .'
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        ');
     }
 
     static function get_styles_libs () {
