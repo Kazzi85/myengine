@@ -1,58 +1,36 @@
 <?php
-    include_once 'Core/Admin.php';
+session_start();
 
-    $adminClass = new admin\core\Admin();
+include_once 'Core/Admin.php';
+include_once '../Core/User.php';
+
+use admin\core\Admin;
+use core\User;
+
+if(isset($_SESSION['current_user']) && $_SESSION['current_user'] != '' && $_SESSION['current_user']['role_id'] == 3):
 ?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin</title>
+<?php Admin::get_admin_header(); ?>
 
-    <link rel="stylesheet" href="assets/libs/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/admin_styles.css">
-
-</head>
-<body>
-    <header class="container-fluid admin_header">
-        <div class="row d-flex align-items-center">
-            <div class="col-lg-4">
-                <h2>Admin panel</h2>
+<section class="container-fluid admin_main_wrap">
+    <div class="row">
+        <div class="col-lg-2 admin_sidebar_wrap">
+            <div class="admin_sidebar_header">
+                <img src="../assets/img/<?= User::get_avatar($_SESSION['current_user']); ?>" alt="admin_logo" width="40">
+                <p><?= User::get_username($_SESSION['current_user']); ?></p>
             </div>
-            <div class="col-lg-9">
-
-            </div>
+            <?php Admin::get_admin_links(); ?>
         </div>
-    </header>
 
-    <section class="container-fluid admin_main_wrap">
-        <div class="row">
-            <div class="col-lg-2 admin_sidebar_wrap">
-                <div class="admin_sidebar_header">
-                    <img src="../assets/img/default_avatar.png" alt="admin_logo" width="40">
-                    <p>Admin</p>
-                </div>
-                <div class="main_blocks">
-                    <a href="/admin">dashboard</a><br>
-                    <a href="/admin/block.php">dashboard</a>
-                </div>
-            </div>
-
-            <div class="col-lg-10">
-                <?php $adminClass::get_admin_block($_GET['admin_path']); ?>
-            </div>
+        <div class="col-lg-10">
+            <?php Admin::get_admin_block($_GET['admin_path']); ?>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
+<?php Admin::get_admin_footer(); ?>
+<?php else:
+header('Location: /');
+endif;
+?>
 
-    </footer>
-
-    <script src="assets/libs/js/jquery-3.6.1.min.js"></script>
-    <script src="assets/libs/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

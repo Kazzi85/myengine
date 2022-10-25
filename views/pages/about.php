@@ -1,3 +1,3 @@
-<h1>О нас</h1>
-<a href="/">Главная</a>
-<br>
+<pre>
+    <?php var_dump($_SESSION);?>
+</pre>

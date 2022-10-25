@@ -28,6 +28,11 @@
             </div>
 
             <?php endforeach; ?>
+
+
         </div>
+        <pre>
+            <?php var_dump($_SESSION['current_user']);?>
+        </pre>
     </div>
 </section>

@@ -16,6 +16,10 @@
   background-color: #1e2125;
   color: whitesmoke;
 }
+.admin_main_wrap .admin_sidebar_wrap .links_panel a {
+  color: #babbbc;
+  text-decoration: none;
+}
 .admin_main_wrap .admin_sidebar_wrap .admin_sidebar_header {
   border-bottom: solid 1px darkgrey;
   display: flex;
